@@ -1,4 +1,4 @@
-import type { ContentBlock } from '@prisma/client';
+import type { ContentBlock } from './types';
 
 /**
  * Selects a diverse set of content blocks from a pool, ensuring balanced

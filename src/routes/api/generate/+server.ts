@@ -3,8 +3,8 @@ import type { RequestHandler } from './$types';
 import { db } from '$lib/server/db';
 import { selectBlocks } from '$lib/server/randomizer';
 
-export const POST: RequestHandler = async () => {
-	const pool = await db.contentBlock.findMany();
+export const POST: RequestHandler = () => {
+	const pool = db.contentBlock.findMany();
 
 	if (pool.length === 0) {
 		return new Response(JSON.stringify({ error: 'No content blocks available.' }), {
@@ -15,7 +15,7 @@ export const POST: RequestHandler = async () => {
 
 	const blocks = selectBlocks(pool);
 
-	const lesson = await db.lesson.create({
+	const lesson = db.lesson.create({
 		data: {
 			blocks: JSON.stringify(blocks)
 		}
